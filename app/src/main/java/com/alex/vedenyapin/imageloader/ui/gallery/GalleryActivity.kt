@@ -18,13 +18,15 @@ class GalleryActivity : AppCompatActivity() {
 
     private var errorSnackbar: Snackbar? = null
 
+    private val numberOfColumns: Int = 5
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
-        binding.postList.layoutManager = GridLayoutManager(this, GridLayoutManager.VERTICAL, GridLayoutManager.VERTICAL, false)
-
         viewModel = ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        binding.imageList.layoutManager = GridLayoutManager(this, numberOfColumns)
+        binding.imageList.adapter = viewModel.imageGridAdapter
         viewModel.errorMessage.observe(this, Observer {
             errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
         })

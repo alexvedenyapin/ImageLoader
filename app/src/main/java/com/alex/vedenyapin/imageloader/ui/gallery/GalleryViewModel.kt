@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.view.View
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.base.BaseViewModel
+import com.alex.vedenyapin.imageloader.model.Image
 import com.alex.vedenyapin.imageloader.network.Api
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,6 +19,7 @@ class GalleryViewModel: BaseViewModel() {
     @Inject
     lateinit var api: Api
 
+    val imageGridAdapter: ImageGridAdapter = ImageGridAdapter()
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
     val errorClickListener = View.OnClickListener { loadPosts() }
@@ -35,7 +37,7 @@ class GalleryViewModel: BaseViewModel() {
                 .doOnSubscribe { onRetrieveImageListStart() }
                 .doOnTerminate { onRetrieveImageListFinish() }
                 .subscribe(
-                        { onRetrieveImageListSuccess() },
+                        { result -> onRetrieveImageListSuccess(result) },
                         { onRetrieveImageListError() }
                 )
     }
@@ -49,8 +51,8 @@ class GalleryViewModel: BaseViewModel() {
         loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrieveImageListSuccess() {
-
+    private fun onRetrieveImageListSuccess(imageList:List<Image>){
+        imageGridAdapter.updateImageList(imageList)
     }
 
     private fun onRetrieveImageListError() {
