@@ -1,6 +1,6 @@
 package com.alex.vedenyapin.imageloader.network
 
-import android.media.Image
+import com.alex.vedenyapin.imageloader.model.Image
 import io.reactivex.Observable
 import retrofit2.http.GET
 

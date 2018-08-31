@@ -1,6 +1,7 @@
 package com.alex.vedenyapin.imageloader.base
 
 import android.arch.lifecycle.ViewModel
+import com.alex.vedenyapin.imageloader.di.components.DaggerViewModelComponent
 import com.alex.vedenyapin.imageloader.di.components.ViewModelComponent
 import com.alex.vedenyapin.imageloader.di.modules.NetworkModule
 import com.alex.vedenyapin.imageloader.ui.gallery.GalleryViewModel
