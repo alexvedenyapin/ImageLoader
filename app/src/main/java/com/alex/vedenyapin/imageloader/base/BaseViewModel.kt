@@ -9,7 +9,7 @@ import com.alex.vedenyapin.imageloader.ui.gallery.GalleryViewModel
  * Created by Alex Vedenyapin on 31.08.2018
  */
 open class BaseViewModel: ViewModel() {
-    private val mComponent: ViewModelComponent = DaggerViewModelComponent
+    private val component: ViewModelComponent = DaggerViewModelComponent
             .builder()
             .networkModule(NetworkModule)
             .build()
@@ -20,7 +20,7 @@ open class BaseViewModel: ViewModel() {
 
     private fun inject() {
         when (this) {
-            is GalleryViewModel -> mComponent.inject(this)
+            is GalleryViewModel -> component.inject(this)
         }
     }
 }
