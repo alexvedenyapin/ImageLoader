@@ -2,6 +2,7 @@ package com.alex.vedenyapin.imageloader.ui.gallery
 
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
+import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.base.BaseViewModel
 import com.alex.vedenyapin.imageloader.network.Api
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,7 +17,11 @@ class GalleryViewModel: BaseViewModel() {
 
     @Inject
     lateinit var api: Api
+
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage:MutableLiveData<Int> = MutableLiveData()
+    val errorClickListener = View.OnClickListener { loadPosts() }
+
     private lateinit var subscription: Disposable
 
     init {
@@ -37,10 +42,11 @@ class GalleryViewModel: BaseViewModel() {
 
     private fun onRetrieveImageListStart() {
         loadingVisibility.value = View.VISIBLE
+        errorMessage.value = null
     }
 
     private fun onRetrieveImageListFinish() {
-        loadingVisibility.value = View.VISIBLE
+        loadingVisibility.value = View.GONE
     }
 
     private fun onRetrieveImageListSuccess() {
@@ -48,7 +54,7 @@ class GalleryViewModel: BaseViewModel() {
     }
 
     private fun onRetrieveImageListError() {
-
+        errorMessage.value = R.string.post_error
     }
 
     override fun onCleared() {
