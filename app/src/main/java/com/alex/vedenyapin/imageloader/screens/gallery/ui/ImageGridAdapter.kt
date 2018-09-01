@@ -1,4 +1,4 @@
-package com.alex.vedenyapin.imageloader.ui.gallery
+package com.alex.vedenyapin.imageloader.screens.gallery.ui
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

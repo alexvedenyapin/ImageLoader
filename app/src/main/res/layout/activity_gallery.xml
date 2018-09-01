@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.alex.vedenyapin.imageloader.ui.gallery.GalleryViewModel" />
+            type="com.alex.vedenyapin.imageloader.screens.gallery.ui.GalleryViewModel" />
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

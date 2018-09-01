@@ -1,6 +1,6 @@
-package com.alex.vedenyapin.imageloader.di.modules
+package com.alex.vedenyapin.imageloader.screens.gallery.di
 
-import com.alex.vedenyapin.imageloader.domain.GalleryInteractor
+import com.alex.vedenyapin.imageloader.screens.gallery.domain.GalleryInteractor
 import com.alex.vedenyapin.imageloader.network.Api
 import dagger.Module
 import dagger.Provides

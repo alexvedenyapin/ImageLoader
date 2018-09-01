@@ -1,4 +1,4 @@
-package com.alex.vedenyapin.imageloader.domain
+package com.alex.vedenyapin.imageloader.screens.gallery.domain
 
 import com.alex.vedenyapin.imageloader.model.Image
 import com.alex.vedenyapin.imageloader.network.Api

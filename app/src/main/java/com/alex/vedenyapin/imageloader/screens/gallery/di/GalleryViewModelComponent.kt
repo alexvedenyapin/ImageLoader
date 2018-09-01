@@ -1,8 +1,7 @@
-package com.alex.vedenyapin.imageloader.di.components
+package com.alex.vedenyapin.imageloader.screens.gallery.di
 
-import com.alex.vedenyapin.imageloader.di.modules.GalleryModule
-import com.alex.vedenyapin.imageloader.di.modules.NetworkModule
-import com.alex.vedenyapin.imageloader.ui.gallery.GalleryViewModel
+import com.alex.vedenyapin.imageloader.di.di.NetworkModule
+import com.alex.vedenyapin.imageloader.screens.gallery.ui.GalleryViewModel
 import dagger.Component
 import javax.inject.Singleton
 

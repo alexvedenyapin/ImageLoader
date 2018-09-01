@@ -1,14 +1,14 @@
-package com.alex.vedenyapin.imageloader.ui.gallery
+package com.alex.vedenyapin.imageloader.screens.gallery.ui
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.view.View
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.di.components.DaggerGalleryViewModelComponent
-import com.alex.vedenyapin.imageloader.di.components.GalleryViewModelComponent
-import com.alex.vedenyapin.imageloader.di.modules.GalleryModule
-import com.alex.vedenyapin.imageloader.di.modules.NetworkModule
-import com.alex.vedenyapin.imageloader.domain.GalleryInteractor
+import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryViewModelComponent
+import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryModule
+import com.alex.vedenyapin.imageloader.di.di.NetworkModule
+import com.alex.vedenyapin.imageloader.screens.gallery.domain.GalleryInteractor
 import com.alex.vedenyapin.imageloader.model.Image
 import javax.inject.Inject
 
