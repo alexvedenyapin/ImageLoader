@@ -1,7 +1,9 @@
 package com.alex.vedenyapin.imageloader.screens.gallery.domain
 
 import com.alex.vedenyapin.imageloader.model.Image
+import com.alex.vedenyapin.imageloader.model.ImageDao
 import com.alex.vedenyapin.imageloader.network.Api
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -12,8 +14,18 @@ import io.reactivex.schedulers.Schedulers
 class GalleryInteractor(private val api: Api) {
     private lateinit var subscription: Disposable
 
-    fun loadImages(onStart: () -> Unit, onFinish: () -> Unit, onSuccess: (List<Image>) -> Unit, onError: () -> Unit) {
-        subscription = api.getImages()
+    fun loadImages(imageDao: ImageDao, onStart: () -> Unit, onFinish: () -> Unit, onSuccess: (List<Image>) -> Unit, onError: () -> Unit) {
+        subscription = Observable.fromCallable { imageDao.all }
+                .concatMap {
+                    dbImageList ->
+                    if(dbImageList.isEmpty())
+                        api.getImages().concatMap {
+                            apiImageList -> imageDao.insertAll(*apiImageList.toTypedArray())
+                            Observable.just(apiImageList)
+                        }
+                    else
+                        Observable.just(dbImageList)
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onStart() }

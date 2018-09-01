@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.databinding.ActivityGalleryBinding
+import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryViewModelFactory
 
 class GalleryActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
-        viewModel = ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, GalleryViewModelFactory(this)).get(GalleryViewModel::class.java)
         binding.imageList.layoutManager = GridLayoutManager(this, numberOfColumns)
         binding.imageList.adapter = viewModel.imageGridAdapter
         viewModel.errorMessage.observe(this, Observer {

@@ -4,18 +4,19 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.view.View
 import com.alex.vedenyapin.imageloader.R
-import com.alex.vedenyapin.imageloader.di.components.DaggerGalleryViewModelComponent
 import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryViewModelComponent
 import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryModule
 import com.alex.vedenyapin.imageloader.di.di.NetworkModule
 import com.alex.vedenyapin.imageloader.screens.gallery.domain.GalleryInteractor
 import com.alex.vedenyapin.imageloader.model.Image
+import com.alex.vedenyapin.imageloader.model.ImageDao
+import com.alex.vedenyapin.imageloader.screens.gallery.di.DaggerGalleryViewModelComponent
 import javax.inject.Inject
 
 /**
  * Created by Alex Vedenyapin on 31.08.2018
  */
-class GalleryViewModel : ViewModel() {
+class GalleryViewModel(private val imageDao: ImageDao): ViewModel() {
 
     @Inject
     lateinit var galleryInteractor: GalleryInteractor
@@ -37,7 +38,7 @@ class GalleryViewModel : ViewModel() {
     }
 
     private fun loadImages() {
-        galleryInteractor.loadImages({ onStart() }, { onFinish() }, { onSuccess(it) }, { onError() })
+        galleryInteractor.loadImages(imageDao, { onStart() }, { onFinish() }, { onSuccess(it) }, { onError() })
     }
 
     private fun onStart() {
