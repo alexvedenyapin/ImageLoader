@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Component(modules = [(NetworkModule::class), (GalleryModule::class)])
 interface GalleryViewModelComponent {
 
-    fun inject(postListViewModel: GalleryViewModel)
+    fun inject(galleryViewModel: GalleryViewModel)
 
     @Component.Builder
     interface Builder {

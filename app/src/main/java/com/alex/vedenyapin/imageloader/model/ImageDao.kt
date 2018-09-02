@@ -9,6 +9,10 @@ import android.arch.persistence.room.Query
  */
 @Dao
 interface ImageDao {
+
+    @Query("SELECT * FROM image WHERE id = :id")
+    fun getById(id: Int): Image
+
     @get:Query("SELECT * FROM image")
     val all: List<Image>
 

@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
  * Created by Alex Vedenyapin on 01.09.2018
  */
 class GalleryInteractor(private val api: Api) {
+
     private lateinit var subscription: Disposable
 
     fun loadImages(imageDao: ImageDao, onStart: () -> Unit, onFinish: () -> Unit, onSuccess: (List<Image>) -> Unit, onError: () -> Unit) {
