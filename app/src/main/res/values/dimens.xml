@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="big_image_margin_top">50dp</dimen>
+    <dimen name="margin_top_very_big">30dp</dimen>
+    <dimen name="margin_top_regular">10dp</dimen>
+    <dimen name="margin_top_big">16dp</dimen>
+    <dimen name="margin_top_small">2dp</dimen>
 </resources>

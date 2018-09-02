@@ -3,18 +3,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="viewModel"
-            type="com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsViewModel" />
+            name="commentsListViewModel"
+            type="com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsListViewModel" />
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/big_Image"
+            android:id="@+id/big_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/big_image_margin_top"
+            android:layout_marginTop="@dimen/margin_top_very_big"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -22,17 +22,18 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:mutableVisibility="@{viewModel.getLoadingVisibility()}"
+            app:mutableVisibility="@{commentsListViewModel.getLoadingVisibility()}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/comments_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_top_very_big"
+            app:layout_constraintTop_toBottomOf="@id/big_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -7,17 +7,18 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.databinding.ActivityCommentsBinding
 import com.alex.vedenyapin.imageloader.model.image.Image
-import com.alex.vedenyapin.imageloader.screens.comments.di.CommentsViewModelFactory
+import com.alex.vedenyapin.imageloader.screens.comments.di.CommentsListViewModelFactory
 import com.alex.vedenyapin.imageloader.utils.IMAGE_ID
 import com.squareup.picasso.Picasso
 
 class CommentsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCommentsBinding
-    private lateinit var viewModel: CommentsViewModel
+    private lateinit var commentsListViewModel: CommentsListViewModel
 
     private var errorSnackbar: Snackbar? = null
     private var imageId: Int = 0
@@ -28,24 +29,22 @@ class CommentsActivity : AppCompatActivity() {
         imageId = intent.getIntExtra(IMAGE_ID, 0)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_comments)
-        viewModel = ViewModelProviders.of(this, CommentsViewModelFactory(this, imageId)).get(CommentsViewModel::class.java)
+        commentsListViewModel = ViewModelProviders.of(this, CommentsListViewModelFactory(this, imageId)).get(CommentsListViewModel::class.java)
 
         setUpList()
         observeImage()
         observeError()
 
-        binding.viewModel = viewModel
+        binding.commentsListViewModel = commentsListViewModel
     }
 
     private fun setUpList() {
-//        binding.imageList.layoutManager = GridLayoutManager(this, NUMBER_OF_GALLERY_COLUMNS)
-//        val imageGridAdapter = viewModel.imageGridAdapter
-//        imageGridAdapter.setImageListener(this)
-//        binding.imageList.adapter = imageGridAdapter
+        binding.commentsList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.commentsList.adapter = commentsListViewModel.commentsAdapter
     }
 
     private fun observeImage() {
-        viewModel.bigImage.observe(this, Observer { image ->
+        commentsListViewModel.bigImage.observe(this, Observer { image ->
             if (image != null) showImage(image)
         })
     }
@@ -55,14 +54,14 @@ class CommentsActivity : AppCompatActivity() {
     }
 
     private fun observeError() {
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
+        commentsListViewModel.errorMessage.observe(this, Observer { errorMessage ->
             if (errorMessage != null) showError(errorMessage) else hideError()
         })
     }
 
     private fun showError(@StringRes errorMessage: Int) {
         errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
+        errorSnackbar?.setAction(R.string.retry, commentsListViewModel.errorClickListener)
         errorSnackbar?.show()
     }
 

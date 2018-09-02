@@ -20,7 +20,7 @@ import com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsActivity
 class GalleryActivity : AppCompatActivity(), ImageGridAdapter.ImageListener {
 
     private lateinit var binding: ActivityGalleryBinding
-    private lateinit var viewModel: GalleryViewModel
+    private lateinit var galleryViewModel: GalleryViewModel
 
     private var errorSnackbar: Snackbar? = null
 
@@ -28,30 +28,30 @@ class GalleryActivity : AppCompatActivity(), ImageGridAdapter.ImageListener {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
-        viewModel = ViewModelProviders.of(this, GalleryViewModelFactory(this)).get(GalleryViewModel::class.java)
+        galleryViewModel = ViewModelProviders.of(this, GalleryViewModelFactory(this)).get(GalleryViewModel::class.java)
 
         setUpList()
         observeError()
 
-        binding.viewModel = viewModel
+        binding.galleryViewModel = galleryViewModel
     }
 
     private fun setUpList() {
         binding.imageList.layoutManager = GridLayoutManager(this, NUMBER_OF_GALLERY_COLUMNS)
-        val imageGridAdapter = viewModel.imageGridAdapter
+        val imageGridAdapter = galleryViewModel.imageGridAdapter
         imageGridAdapter.setImageListener(this)
         binding.imageList.adapter = imageGridAdapter
     }
 
     private fun observeError() {
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
+        galleryViewModel.errorMessage.observe(this, Observer { errorMessage ->
             if (errorMessage != null) showError(errorMessage) else hideError()
         })
     }
 
     private fun showError(@StringRes errorMessage:Int){
         errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
+        errorSnackbar?.setAction(R.string.retry, galleryViewModel.errorClickListener)
         errorSnackbar?.show()
     }
 

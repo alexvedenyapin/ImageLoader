@@ -19,7 +19,7 @@ class ImageGridAdapter: RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
     private lateinit var imageListener: ImageListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.grid_view_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
         return ViewHolder(v)
     }
 

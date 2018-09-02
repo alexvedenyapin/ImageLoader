@@ -1,7 +1,7 @@
 package com.alex.vedenyapin.imageloader.screens.comments.di
 
 import com.alex.vedenyapin.imageloader.di.di.NetworkModule
-import com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsViewModel
+import com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsListViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,13 +10,13 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [(NetworkModule::class), (CommentsModule::class)])
-interface CommentsViewModelComponent {
+interface CommentsListViewModelComponent {
 
-    fun inject(commentsViewModel: CommentsViewModel)
+    fun inject(commentsListViewModel: CommentsListViewModel)
 
     @Component.Builder
     interface Builder {
-        fun build(): CommentsViewModelComponent
+        fun build(): CommentsListViewModelComponent
 
         fun networkModule(networkModule: NetworkModule): Builder
 

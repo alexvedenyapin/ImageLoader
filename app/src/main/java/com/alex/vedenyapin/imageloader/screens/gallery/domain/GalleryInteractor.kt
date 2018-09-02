@@ -19,13 +19,14 @@ class GalleryInteractor(private val api: Api) {
         subscription = Observable.fromCallable { imageDao.all }
                 .concatMap {
                     dbImageList ->
-                    if(dbImageList.isEmpty())
-                        api.getImages().concatMap {
-                            apiImageList -> imageDao.insertAll(*apiImageList.toTypedArray())
+                    if (dbImageList.isEmpty()) {
+                        api.getImages().concatMap { apiImageList ->
+                            imageDao.insertAll(*apiImageList.toTypedArray())
                             Observable.just(apiImageList)
                         }
-                    else
+                    } else {
                         Observable.just(dbImageList)
+                    }
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
