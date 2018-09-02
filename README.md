@@ -2,7 +2,7 @@
 
 This is a sample app which loads images and comments from *https://jsonplaceholder.typicode.com/*
 
-*Libs, tools and approaches used in the app:*
+## Libs, tools and approaches used in the app:
 
 Language: Kotlin
 Architecture: MVVM
