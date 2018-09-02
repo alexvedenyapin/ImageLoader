@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.model.Image
 import com.squareup.picasso.Picasso
@@ -17,6 +16,7 @@ import com.squareup.picasso.Picasso
 class ImageGridAdapter: RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
 
     private lateinit var imageList: List<Image>
+    private lateinit var imageListener: ImageListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.grid_view_item, parent, false)
@@ -29,18 +29,26 @@ class ImageGridAdapter: RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
         return if (::imageList.isInitialized) imageList.size else 0
     }
 
+    fun setImageListener(imageListener: ImageListener) {
+        this.imageListener = imageListener
+    }
+
     fun updateImageList(imageList: List<Image>) {
         this.imageList = imageList
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(image: Image, pos: Int) = with(itemView) {
             val imageView = findViewById(R.id.image) as ImageView
             Picasso.get().load(image.thumbnailUrl).into(imageView)
             imageView.setOnClickListener {
-                Toast.makeText(context, "Clicked Image # $pos", Toast.LENGTH_SHORT).show()
+                imageListener.onImageClicked(image.id)
             }
         }
+    }
+
+    interface ImageListener {
+        fun onImageClicked(imageId: Int)
     }
 }

@@ -9,3 +9,5 @@ const val PAGE: String = "_page"
 const val LIMIT: String = "_limit"
 const val PAGE_NUMBER: Int = 1
 const val LIMIT_NUMBER: Int = 200
+const val NUMBER_OF_GALLERY_COLUMNS: Int = 5
+const val IMAGE_ID: String = "IMAGE_ID"

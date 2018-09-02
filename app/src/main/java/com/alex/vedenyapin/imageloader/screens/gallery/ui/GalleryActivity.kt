@@ -11,27 +11,42 @@ import android.support.v7.widget.GridLayoutManager
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.databinding.ActivityGalleryBinding
 import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryViewModelFactory
+import com.alex.vedenyapin.imageloader.utils.NUMBER_OF_GALLERY_COLUMNS
+import com.alex.vedenyapin.imageloader.utils.IMAGE_ID
+import android.content.Intent
+import com.alex.vedenyapin.imageloader.screens.comments.ui.CommentsActivity
 
-class GalleryActivity : AppCompatActivity() {
+
+class GalleryActivity : AppCompatActivity(), ImageGridAdapter.ImageListener {
 
     private lateinit var binding: ActivityGalleryBinding
     private lateinit var viewModel: GalleryViewModel
 
     private var errorSnackbar: Snackbar? = null
 
-    private val numberOfColumns: Int = 5
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
         viewModel = ViewModelProviders.of(this, GalleryViewModelFactory(this)).get(GalleryViewModel::class.java)
-        binding.imageList.layoutManager = GridLayoutManager(this, numberOfColumns)
-        binding.imageList.adapter = viewModel.imageGridAdapter
-        viewModel.errorMessage.observe(this, Observer {
-            errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
-        })
+
+        setUpList()
+        observeError()
+
         binding.viewModel = viewModel
+    }
+
+    private fun setUpList() {
+        binding.imageList.layoutManager = GridLayoutManager(this, NUMBER_OF_GALLERY_COLUMNS)
+        val imageGridAdapter = viewModel.imageGridAdapter
+        imageGridAdapter.setImageListener(this)
+        binding.imageList.adapter = imageGridAdapter
+    }
+
+    private fun observeError() {
+        viewModel.errorMessage.observe(this, Observer { errorMessage ->
+            if (errorMessage != null) showError(errorMessage) else hideError()
+        })
     }
 
     private fun showError(@StringRes errorMessage:Int){
@@ -42,5 +57,11 @@ class GalleryActivity : AppCompatActivity() {
 
     private fun hideError(){
         errorSnackbar?.dismiss()
+    }
+
+    override fun onImageClicked(imageId: Int) {
+        val intent = Intent(baseContext, CommentsActivity::class.java)
+        intent.putExtra(IMAGE_ID, imageId)
+        startActivity(intent)
     }
 }
