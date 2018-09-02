@@ -10,7 +10,7 @@ import com.alex.vedenyapin.imageloader.model.image.ImageDao
 /**
  * Created by Alex Vedenyapin on 01.09.2018
  */
-@Database(entities = arrayOf(Image::class, Comment::class), version = 2)
+@Database(entities = arrayOf(Image::class, Comment::class), version = 1)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun imageDao(): ImageDao

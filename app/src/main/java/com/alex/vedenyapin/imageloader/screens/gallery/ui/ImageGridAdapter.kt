@@ -23,7 +23,7 @@ class ImageGridAdapter: RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(imageList[position], position)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(imageList[position])
 
     override fun getItemCount(): Int {
         return if (::imageList.isInitialized) imageList.size else 0
@@ -39,7 +39,7 @@ class ImageGridAdapter: RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(image: Image, pos: Int) = with(itemView) {
+        fun bind(image: Image) = with(itemView) {
             val imageView = findViewById(R.id.image) as ImageView
             Picasso.get().load(image.thumbnailUrl).into(imageView)
             imageView.setOnClickListener {

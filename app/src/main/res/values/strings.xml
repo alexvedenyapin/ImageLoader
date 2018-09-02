@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ImageLoader</string>
     <string name="retry">Retry</string>
-    <string name="post_error">An error occurred while loading the images</string>
+    <string name="error">An error occurred while loading the data</string>
 </resources>

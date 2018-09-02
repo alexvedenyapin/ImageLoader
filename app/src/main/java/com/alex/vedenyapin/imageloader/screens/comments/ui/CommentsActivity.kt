@@ -21,20 +21,20 @@ class CommentsActivity : AppCompatActivity() {
     private lateinit var commentsListViewModel: CommentsListViewModel
 
     private var errorSnackbar: Snackbar? = null
-    private var imageId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        imageId = intent.getIntExtra(IMAGE_ID, 0)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_comments)
-        commentsListViewModel = ViewModelProviders.of(this, CommentsListViewModelFactory(this, imageId)).get(CommentsListViewModel::class.java)
-
+        setUpBinding()
         setUpList()
         observeImage()
         observeError()
+    }
 
+    private fun setUpBinding() {
+        val imageId = intent.getIntExtra(IMAGE_ID, 0)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_comments)
+        commentsListViewModel = ViewModelProviders.of(this, CommentsListViewModelFactory(this, imageId)).get(CommentsListViewModel::class.java)
         binding.commentsListViewModel = commentsListViewModel
     }
 

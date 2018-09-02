@@ -55,7 +55,7 @@ class GalleryViewModel(private val imageDao: ImageDao): ViewModel() {
     }
 
     private fun onError() {
-        errorMessage.value = R.string.post_error
+        errorMessage.value = R.string.error
     }
 
     override fun onCleared() {

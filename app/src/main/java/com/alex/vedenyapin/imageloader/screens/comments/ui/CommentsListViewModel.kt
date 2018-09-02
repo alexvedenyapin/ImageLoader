@@ -51,7 +51,7 @@ class CommentsListViewModel(private val imageId: Int, private val imageDao: Imag
     }
 
     private fun onImageLoadError() {
-        errorMessage.value = R.string.post_error
+        errorMessage.value = R.string.error
     }
 
     private fun loadComments() {
@@ -72,7 +72,7 @@ class CommentsListViewModel(private val imageId: Int, private val imageDao: Imag
     }
 
     private fun onError() {
-        errorMessage.value = R.string.post_error
+        errorMessage.value = R.string.error
     }
 
     override fun onCleared() {

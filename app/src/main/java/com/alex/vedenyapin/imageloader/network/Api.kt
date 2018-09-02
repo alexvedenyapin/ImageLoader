@@ -20,11 +20,11 @@ interface Api {
      * Get the list of the images from the API
      */
     @GET("/photos")
-    fun getImages(@Query(PAGE) page: Int = PAGE_NUMBER, @Query(LIMIT) limit: Int = IMAGE_LIMIT_NUMBER): Observable<List<Image>>
+    fun getImages(@Query(QUERY_PAGE) page: Int = PAGE_NUMBER, @Query(QUERY_LIMIT) limit: Int = IMAGE_LIMIT_NUMBER): Observable<List<Image>>
 
     /**
      * Get the list of the comments from the API
      */
     @GET("/comments")
-    fun getComments(@Query(PAGE) page: Int = PAGE_NUMBER, @Query(LIMIT) limit: Int = COMMENT_LIMIT_NUMBER): Observable<List<Comment>>
+    fun getComments(@Query(QUERY_PAGE) page: Int = PAGE_NUMBER, @Query(QUERY_LIMIT) limit: Int = COMMENT_LIMIT_NUMBER): Observable<List<Comment>>
 }

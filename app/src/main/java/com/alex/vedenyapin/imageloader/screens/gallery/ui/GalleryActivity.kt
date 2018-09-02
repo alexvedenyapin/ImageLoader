@@ -27,20 +27,22 @@ class GalleryActivity : AppCompatActivity(), ImageGridAdapter.ImageListener {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
+        setUpBinding()
+        setUpImageGrid()
+        observeError()
+    }
+
+    private fun setUpBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
         galleryViewModel = ViewModelProviders.of(this, GalleryViewModelFactory(this)).get(GalleryViewModel::class.java)
-
-        setUpList()
-        observeError()
-
         binding.galleryViewModel = galleryViewModel
     }
 
-    private fun setUpList() {
-        binding.imageList.layoutManager = GridLayoutManager(this, NUMBER_OF_GALLERY_COLUMNS)
+    private fun setUpImageGrid() {
+        binding.imageGrid.layoutManager = GridLayoutManager(this, NUMBER_OF_GALLERY_COLUMNS)
         val imageGridAdapter = galleryViewModel.imageGridAdapter
         imageGridAdapter.setImageListener(this)
-        binding.imageList.adapter = imageGridAdapter
+        binding.imageGrid.adapter = imageGridAdapter
     }
 
     private fun observeError() {

@@ -28,7 +28,7 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun providePostApi(retrofit: Retrofit): Api {
+    internal fun provideApi(retrofit: Retrofit): Api {
         return retrofit.create(Api::class.java)
     }
 
@@ -39,7 +39,7 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun provideRetrofitInterface(): Retrofit {
+    internal fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
