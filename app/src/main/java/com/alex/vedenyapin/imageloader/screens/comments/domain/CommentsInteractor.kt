@@ -1,7 +1,7 @@
 package com.alex.vedenyapin.imageloader.screens.comments.domain
 
-import com.alex.vedenyapin.imageloader.model.Image
-import com.alex.vedenyapin.imageloader.model.ImageDao
+import com.alex.vedenyapin.imageloader.model.image.Image
+import com.alex.vedenyapin.imageloader.model.image.ImageDao
 import com.alex.vedenyapin.imageloader.network.Api
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,6 +1,6 @@
 package com.alex.vedenyapin.imageloader.network
 
-import com.alex.vedenyapin.imageloader.model.Image
+import com.alex.vedenyapin.imageloader.model.image.Image
 import com.alex.vedenyapin.imageloader.utils.LIMIT
 import com.alex.vedenyapin.imageloader.utils.LIMIT_NUMBER
 import com.alex.vedenyapin.imageloader.utils.PAGE

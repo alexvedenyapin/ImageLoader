@@ -5,8 +5,9 @@ import android.arch.lifecycle.ViewModel
 import android.view.View
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.di.di.NetworkModule
-import com.alex.vedenyapin.imageloader.model.Image
-import com.alex.vedenyapin.imageloader.model.ImageDao
+import com.alex.vedenyapin.imageloader.model.comment.CommentDao
+import com.alex.vedenyapin.imageloader.model.image.Image
+import com.alex.vedenyapin.imageloader.model.image.ImageDao
 import com.alex.vedenyapin.imageloader.screens.comments.di.CommentsModule
 import com.alex.vedenyapin.imageloader.screens.comments.di.CommentsViewModelComponent
 import com.alex.vedenyapin.imageloader.screens.comments.di.DaggerCommentsViewModelComponent
@@ -16,7 +17,7 @@ import javax.inject.Inject
 /**
  * Created by Alex Vedenyapin on 02.09.2018
  */
-class CommentsViewModel(private val imageDao: ImageDao, private val imageId: Int): ViewModel() {
+class CommentsViewModel(private val imageId: Int, private val imageDao: ImageDao, private val commentDao: CommentDao) : ViewModel() {
 
     @Inject
     lateinit var commentsInteractor: CommentsInteractor
@@ -27,7 +28,7 @@ class CommentsViewModel(private val imageDao: ImageDao, private val imageId: Int
             .commentsModule(CommentsModule())
             .build()
 
-//    val commentsAdapter: CommentsAdapter = CommentsAdapter()
+    //    val commentsAdapter: CommentsAdapter = CommentsAdapter()
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val bigImage: MutableLiveData<Image> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()

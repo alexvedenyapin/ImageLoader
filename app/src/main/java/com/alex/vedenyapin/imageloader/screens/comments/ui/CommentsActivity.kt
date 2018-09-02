@@ -9,7 +9,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.alex.vedenyapin.imageloader.R
 import com.alex.vedenyapin.imageloader.databinding.ActivityCommentsBinding
-import com.alex.vedenyapin.imageloader.model.Image
+import com.alex.vedenyapin.imageloader.model.image.Image
 import com.alex.vedenyapin.imageloader.screens.comments.di.CommentsViewModelFactory
 import com.alex.vedenyapin.imageloader.utils.IMAGE_ID
 import com.squareup.picasso.Picasso

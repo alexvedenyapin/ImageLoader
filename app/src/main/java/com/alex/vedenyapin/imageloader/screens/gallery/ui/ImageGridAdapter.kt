@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.alex.vedenyapin.imageloader.R
-import com.alex.vedenyapin.imageloader.model.Image
+import com.alex.vedenyapin.imageloader.model.image.Image
 import com.squareup.picasso.Picasso
 
 

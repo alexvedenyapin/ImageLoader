@@ -1,4 +1,4 @@
-package com.alex.vedenyapin.imageloader.model
+package com.alex.vedenyapin.imageloader.model.image
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert

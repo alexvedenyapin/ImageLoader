@@ -1,4 +1,4 @@
-package com.alex.vedenyapin.imageloader.model
+package com.alex.vedenyapin.imageloader.model.image
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

@@ -8,8 +8,8 @@ import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryViewModelCompon
 import com.alex.vedenyapin.imageloader.screens.gallery.di.GalleryModule
 import com.alex.vedenyapin.imageloader.di.di.NetworkModule
 import com.alex.vedenyapin.imageloader.screens.gallery.domain.GalleryInteractor
-import com.alex.vedenyapin.imageloader.model.Image
-import com.alex.vedenyapin.imageloader.model.ImageDao
+import com.alex.vedenyapin.imageloader.model.image.Image
+import com.alex.vedenyapin.imageloader.model.image.ImageDao
 import com.alex.vedenyapin.imageloader.screens.gallery.di.DaggerGalleryViewModelComponent
 import javax.inject.Inject
 
